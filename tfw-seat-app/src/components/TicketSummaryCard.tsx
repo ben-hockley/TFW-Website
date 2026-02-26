@@ -31,11 +31,7 @@ export function TicketSummaryCard({
         {/* Header: roundel + route */}
         <div className="flex items-start gap-3">
           {/* TfW Roundel */}
-          <svg width="40" height="40" viewBox="0 0 40 40" aria-label="TfW">
-            <circle cx="20" cy="20" r="20" fill="#C8102E" />
-            <circle cx="20" cy="20" r="15" fill="white" />
-            <text x="20" y="26" textAnchor="middle" fontSize="14" fontWeight="bold" fill="#C8102E" fontFamily="Inter, sans-serif">T</text>
-          </svg>
+          <img src="/tfw-logo.png" width={40} height={40} alt="TfW" />
           <div className="min-w-0">
             <p className="font-bold text-[17px] text-[#1D1D1B] leading-tight">
               {origin} → {destination}

@@ -4,27 +4,13 @@ import { ReactNode } from "react";
 // TfW "T" roundel SVG – white circle, red T inside
 function TfWRoundel({ size = 36 }: { size?: number }) {
   return (
-    <svg
+    <img
+      src="/tfw-logo.png"
       width={size}
       height={size}
-      viewBox="0 0 36 36"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      aria-label="Transport for Wales logo"
-    >
-      <circle cx="18" cy="18" r="18" fill="white" />
-      <text
-        x="18"
-        y="24"
-        textAnchor="middle"
-        fontSize="20"
-        fontWeight="800"
-        fontFamily="Inter, system-ui, sans-serif"
-        fill="#C8102E"
-      >
-        T
-      </text>
-    </svg>
+      alt="Transport for Wales logo"
+      className="block"
+    />
   );
 }
 
