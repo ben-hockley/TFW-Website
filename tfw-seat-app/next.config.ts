@@ -1,7 +1,8 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  output: "export",   // Enables `next build` static export (outputs to /out)
+  trailingSlash: true, // Required for GitLab Pages static hosting
 };
 
 export default nextConfig;
