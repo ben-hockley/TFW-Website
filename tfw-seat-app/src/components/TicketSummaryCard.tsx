@@ -1,7 +1,5 @@
 "use client";
 
-import { Card, CardContent } from "@/components/ui/card";
-
 interface TicketSummaryCardProps {
   origin: string;
   destination: string;
@@ -28,34 +26,45 @@ export function TicketSummaryCard({
   });
 
   return (
-    <Card className="border-2 border-tfw-red/20">
-      <CardContent className="py-5 space-y-4">
-        <div className="text-center space-y-1">
-          <div className="text-lg font-bold text-tfw-dark">
-            {origin} → {destination}
-          </div>
-          <div className="text-sm text-muted-foreground">
-            {dateStr} at {timeStr}
+    <div className="bg-white rounded-2xl shadow-sm overflow-hidden border border-[#e5e7eb] border-b-4 border-b-[#C8102E]">
+      <div className="p-5 space-y-4">
+        {/* Header: roundel + route */}
+        <div className="flex items-start gap-3">
+          {/* TfW Roundel */}
+          <svg width="40" height="40" viewBox="0 0 40 40" aria-label="TfW">
+            <circle cx="20" cy="20" r="20" fill="#C8102E" />
+            <circle cx="20" cy="20" r="15" fill="white" />
+            <text x="20" y="26" textAnchor="middle" fontSize="14" fontWeight="bold" fill="#C8102E" fontFamily="Inter, sans-serif">T</text>
+          </svg>
+          <div className="min-w-0">
+            <p className="font-bold text-[17px] text-[#1D1D1B] leading-tight">
+              {origin} → {destination}
+            </p>
+            <p className="text-xs text-[#6b7280] mt-0.5">{dateStr} · {timeStr}</p>
           </div>
         </div>
 
+        {/* Ticket type pill */}
+        <div>
+          <span className="inline-flex items-center bg-[#F5F5F5] text-[#1D1D1B] text-xs font-medium px-3 py-1 rounded-full">
+            Standard Single
+          </span>
+        </div>
+
+        {/* Detail rows */}
         <div className="border-t border-dashed pt-4 space-y-2">
           <div className="flex justify-between text-sm">
-            <span className="text-muted-foreground">Ticket type</span>
-            <span className="font-medium">Standard Single</span>
+            <span className="text-[#6b7280]">Operator</span>
+            <span className="font-medium text-[#1D1D1B]">Transport for Wales</span>
           </div>
-          <div className="flex justify-between text-sm">
-            <span className="text-muted-foreground">Operator</span>
-            <span className="font-medium">Transport for Wales</span>
-          </div>
-          <div className="flex justify-between items-center pt-2 border-t">
-            <span className="font-semibold">Total</span>
-            <span className="text-2xl font-bold text-tfw-red">
+          <div className="flex justify-between items-center pt-2 border-t border-[#e5e7eb]">
+            <span className="font-semibold text-[#1D1D1B]">Total</span>
+            <span className="text-3xl font-bold text-[#1D1D1B]">
               £{ticketPrice.toFixed(2)}
             </span>
           </div>
         </div>
-      </CardContent>
-    </Card>
+      </div>
+    </div>
   );
 }

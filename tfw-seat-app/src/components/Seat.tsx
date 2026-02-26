@@ -23,12 +23,12 @@ export function Seat({ seat, onClick }: SeatProps) {
           onClick={() => isFree && onClick(seat)}
           disabled={seat.isOccupied}
           className={`
-            w-12 h-12 sm:w-14 sm:h-14 rounded-lg border-2 flex flex-col items-center justify-center
+            w-12 h-12 sm:w-14 sm:h-14 rounded-xl border-2 flex flex-col items-center justify-center
             text-[10px] transition-all relative
             ${
               isFree
-                ? "bg-seat-free/15 border-seat-free text-seat-free hover:bg-seat-free/25 hover:scale-105 cursor-pointer"
-                : "bg-seat-occupied/10 border-seat-occupied/30 text-seat-occupied/50 opacity-60 cursor-not-allowed"
+                ? "bg-[#D4EDDA] border-[#22963f] text-[#22963f] hover:scale-105 cursor-pointer"
+                : "bg-[#CCCCCC] border-[#aaaaaa] text-[#888] opacity-70 cursor-not-allowed seat-hatch"
             }
           `}
           aria-label={`Seat ${seat.seatId} - ${isFree ? "Available" : "Occupied"}`}
@@ -43,9 +43,7 @@ export function Seat({ seat, onClick }: SeatProps) {
               ))}
             </div>
           )}
-          {seat.isOccupied && (
-            <div className="absolute inset-0 rounded-lg bg-[repeating-linear-gradient(45deg,transparent,transparent_3px,rgba(0,0,0,0.05)_3px,rgba(0,0,0,0.05)_6px)]" />
-          )}
+
         </button>
       </TooltipTrigger>
       <TooltipContent>

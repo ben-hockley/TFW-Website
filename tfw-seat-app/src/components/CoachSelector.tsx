@@ -18,9 +18,9 @@ export function CoachSelector({
 }: CoachSelectorProps) {
   const getOccupancyColor = (freeCount: number, totalCount: number) => {
     const ratio = freeCount / totalCount;
-    if (ratio > 0.4) return "bg-status-ontime";
-    if (ratio > 0.15) return "bg-status-delayed";
-    return "bg-status-cancelled";
+    if (ratio > 0.4) return "bg-[#22963f]";
+    if (ratio > 0.15) return "bg-[#d97706]";
+    return "bg-[#C8102E]";
   };
 
   return (
@@ -35,10 +35,10 @@ export function CoachSelector({
             <button
               key={coach.id}
               onClick={() => onSelectCoach(coach.id)}
-              className={`flex flex-col items-center gap-1.5 p-3 rounded-xl border-2 transition-all min-w-[100px] ${
+              className={`flex flex-col items-center gap-1.5 p-3 rounded-xl border-2 transition-all min-w-[90px] ${
                 isSelected
-                  ? "border-tfw-red bg-tfw-red/5 shadow-md"
-                  : "border-border hover:border-tfw-red/30 hover:shadow-sm"
+                  ? "bg-[#1D1D1B] border-[#1D1D1B] text-white shadow-md"
+                  : "bg-white border-[#e5e7eb] text-[#1D1D1B] hover:border-[#1D1D1B]/40 hover:shadow-sm"
               }`}
             >
               <div className="flex items-center gap-1.5">
@@ -55,7 +55,7 @@ export function CoachSelector({
                     totalSeats
                   )}`}
                 />
-                <span className="text-xs text-muted-foreground">
+                <span className={`text-xs ${isSelected ? "text-white/80" : "text-[#6b7280]"}`}>
                   {freeSeats} free
                 </span>
               </div>

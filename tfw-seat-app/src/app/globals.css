@@ -7,8 +7,24 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-mono: ui-monospace, 'Courier New', monospace;
+
+  /* TfW brand */
+  --color-tfw-red: #C8102E;
+  --color-tfw-dark: #1D1D1B;
+  --color-tfw-grey: #F5F5F5;
+  --color-tfw-white: #FFFFFF;
+
+  /* Seats */
+  --color-seat-free: #22963f;
+  --color-seat-free-bg: #D4EDDA;
+  --color-seat-occupied: #CCCCCC;
+
+  /* Status */
+  --color-status-ontime: #22963f;
+  --color-status-delayed: #d97706;
+  --color-status-cancelled: #C8102E;
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -48,35 +64,35 @@
 }
 
 :root {
-  --radius: 0.625rem;
-  --background: #ffffff;
+  --radius: 0.75rem;
+  --background: #F5F5F5;
   --foreground: #1D1D1B;
   --card: #ffffff;
   --card-foreground: #1D1D1B;
   --popover: #ffffff;
   --popover-foreground: #1D1D1B;
-  --primary: #C8102E;
+  --primary: #1D1D1B;
   --primary-foreground: #ffffff;
-  --secondary: #f3f4f6;
+  --secondary: #F5F5F5;
   --secondary-foreground: #1D1D1B;
-  --muted: #f3f4f6;
+  --muted: #F5F5F5;
   --muted-foreground: #6b7280;
-  --accent: #f3f4f6;
+  --accent: #F5F5F5;
   --accent-foreground: #1D1D1B;
-  --destructive: #ef4444;
+  --destructive: #C8102E;
   --border: #e5e7eb;
   --input: #e5e7eb;
   --ring: #C8102E;
   --chart-1: #C8102E;
   --chart-2: #1D1D1B;
   --chart-3: #6b7280;
-  --chart-4: #22c55e;
-  --chart-5: #f59e0b;
+  --chart-4: #22963f;
+  --chart-5: #d97706;
   --sidebar: #ffffff;
   --sidebar-foreground: #1D1D1B;
   --sidebar-primary: #C8102E;
   --sidebar-primary-foreground: #ffffff;
-  --sidebar-accent: #f3f4f6;
+  --sidebar-accent: #F5F5F5;
   --sidebar-accent-foreground: #1D1D1B;
   --sidebar-border: #e5e7eb;
   --sidebar-ring: #C8102E;
@@ -119,80 +135,96 @@
 @layer base {
   * {
     @apply border-border outline-ring/50;
+    box-sizing: border-box;
+  }
+  html {
+    -webkit-text-size-adjust: 100%;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-[#F5F5F5] text-[#1D1D1B];
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 }
 
-/* TfW brand custom colors */
-@theme inline {
-  --color-tfw-red: #C8102E;
-  --color-tfw-dark: #1D1D1B;
-  --color-tfw-white: #ffffff;
-  --color-seat-free: #22c55e;
-  --color-seat-occupied: #9ca3af;
-  --color-status-ontime: #22c55e;
-  --color-status-delayed: #f59e0b;
-  --color-status-cancelled: #ef4444;
+/* ── Page fade-in ─────────────────────────────────────────────────────── */
+@keyframes page-fade-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.page-animate {
+  animation: page-fade-in 0.3s ease-out forwards;
 }
 
-/* Success checkmark animation */
-@keyframes checkmark-stroke {
-  0% {
-    stroke-dashoffset: 100;
-  }
-  100% {
-    stroke-dashoffset: 0;
-  }
+/* ── Card slide-up ────────────────────────────────────────────────────── */
+@keyframes card-slide-up {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.card-animate {
+  animation: card-slide-up 0.35s ease-out forwards;
+  opacity: 0;
 }
 
-@keyframes checkmark-scale {
-  0% {
-    transform: scale(0);
-    opacity: 0;
-  }
-  50% {
-    transform: scale(1.2);
-  }
-  100% {
-    transform: scale(1);
-    opacity: 1;
-  }
+/* Stagger delays for departure cards */
+.card-delay-0 { animation-delay: 0ms; }
+.card-delay-1 { animation-delay: 60ms; }
+.card-delay-2 { animation-delay: 120ms; }
+.card-delay-3 { animation-delay: 180ms; }
+.card-delay-4 { animation-delay: 240ms; }
+.card-delay-5 { animation-delay: 300ms; }
+.card-delay-6 { animation-delay: 360ms; }
+.card-delay-7 { animation-delay: 420ms; }
+.card-delay-8 { animation-delay: 480ms; }
+.card-delay-9 { animation-delay: 540ms; }
+.card-delay-10 { animation-delay: 600ms; }
+.card-delay-11 { animation-delay: 660ms; }
+
+/* ── TfW branded spinner ──────────────────────────────────────────────── */
+@keyframes tfw-spin {
+  to { transform: rotate(360deg); }
+}
+.tfw-spinner {
+  animation: tfw-spin 0.75s linear infinite;
 }
 
-@keyframes checkmark-circle {
-  0% {
-    stroke-dashoffset: 330;
-  }
-  100% {
-    stroke-dashoffset: 0;
-  }
+/* ── Success checkmark ────────────────────────────────────────────────── */
+@keyframes checkmark-pop {
+  0%   { transform: scale(0); opacity: 0; }
+  60%  { transform: scale(1.12); opacity: 1; }
+  100% { transform: scale(1); opacity: 1; }
+}
+@keyframes circle-draw {
+  from { stroke-dashoffset: 220; }
+  to   { stroke-dashoffset: 0; }
+}
+@keyframes check-draw {
+  from { stroke-dashoffset: 80; }
+  to   { stroke-dashoffset: 0; }
 }
 
-.checkmark-svg {
-  animation: checkmark-scale 0.5s ease-in-out forwards;
+.checkmark-wrap {
+  animation: checkmark-pop 0.45s cubic-bezier(0.34, 1.56, 0.64, 1) 0.1s both;
 }
-
 .checkmark-circle {
-  stroke-dasharray: 330;
-  stroke-dashoffset: 330;
-  animation: checkmark-circle 0.6s ease-in-out 0.3s forwards;
+  stroke-dasharray: 220;
+  stroke-dashoffset: 220;
+  animation: circle-draw 0.55s ease-out 0.35s forwards;
 }
-
 .checkmark-check {
-  stroke-dasharray: 100;
-  stroke-dashoffset: 100;
-  animation: checkmark-stroke 0.4s ease-in-out 0.7s forwards;
+  stroke-dasharray: 80;
+  stroke-dashoffset: 80;
+  animation: check-draw 0.4s ease-out 0.75s forwards;
 }
 
-/* Spinner animation */
-@keyframes spin {
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-.animate-spin {
-  animation: spin 1s linear infinite;
+/* ── Occupied seat hatch ──────────────────────────────────────────────── */
+.seat-hatch {
+  background-image: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 3px,
+    rgba(0,0,0,0.08) 3px,
+    rgba(0,0,0,0.08) 6px
+  );
 }

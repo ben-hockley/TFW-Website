@@ -4,7 +4,7 @@ export function PaymentSuccessAnimation() {
   return (
     <div className="flex flex-col items-center gap-4 py-8">
       <svg
-        className="checkmark-svg"
+        className="checkmark-wrap"
         width="80"
         height="80"
         viewBox="0 0 80 80"
@@ -31,10 +31,10 @@ export function PaymentSuccessAnimation() {
         />
       </svg>
       <div className="text-center space-y-2">
-        <p className="text-xl font-bold text-tfw-dark">
+        <p className="text-xl font-bold text-[#1D1D1B]">
           Success! Ticket added to your wallet.
         </p>
-        <p className="text-sm text-muted-foreground">
+        <p className="text-sm text-[#6b7280]">
           Your ticket is saved in your Apple Wallet / Google Wallet
         </p>
       </div>

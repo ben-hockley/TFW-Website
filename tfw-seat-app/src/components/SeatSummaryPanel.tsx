@@ -1,6 +1,5 @@
 "use client";
 
-import { Badge } from "@/components/ui/badge";
 import { Coach } from "@/lib/types";
 import { featureInfo } from "@/lib/mockData";
 
@@ -21,28 +20,27 @@ export function SeatSummaryPanel({ coach }: SeatSummaryPanelProps) {
   });
 
   return (
-    <div className="bg-muted/50 rounded-xl p-4 space-y-3">
+    <div className="bg-[#F5F5F5] rounded-2xl p-4 space-y-3 border border-[#e5e7eb]">
       <div className="flex items-center justify-between">
-        <h3 className="font-semibold text-sm">Seat Summary</h3>
-        <Badge variant="secondary" className="text-sm">
+        <h3 className="font-semibold text-sm text-[#1D1D1B]">Coach Summary</h3>
+        <span className="inline-flex items-center bg-[#1D1D1B] text-white text-[11px] font-bold px-2.5 py-1 rounded-full">
           {freeSeats.length}/{totalSeats} free
-        </Badge>
+        </span>
       </div>
 
       <div className="flex flex-wrap gap-2">
         {Object.entries(featureCounts).map(([feature, count]) => (
-          <Badge
+          <span
             key={feature}
-            variant="outline"
-            className="text-xs py-1 px-2.5 gap-1"
+            className="inline-flex items-center gap-1 bg-white border border-[#e5e7eb] text-[#1D1D1B] text-xs py-1 px-2.5 rounded-full"
           >
             <span>{featureInfo[feature]?.icon}</span>
             <span>{featureInfo[feature]?.label}</span>
-            <span className="ml-0.5 font-bold">{count}</span>
-          </Badge>
+            <span className="ml-0.5 font-bold text-[#C8102E]">{count}</span>
+          </span>
         ))}
         {Object.keys(featureCounts).length === 0 && (
-          <span className="text-sm text-muted-foreground">No featured seats available</span>
+          <span className="text-sm text-[#6b7280]">No featured seats available</span>
         )}
       </div>
     </div>

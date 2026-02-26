@@ -36,7 +36,7 @@ export function SeatMap({ coach, onSeatClick }: SeatMapProps) {
       </div>
 
       {/* Seat grid */}
-      <div className="overflow-x-auto">
+      <div className="bg-white rounded-2xl shadow-sm p-4 overflow-x-auto">
         <div className="inline-flex flex-col gap-1.5 min-w-max mx-auto">
           {/* Column labels */}
           <div className="flex gap-1.5 justify-center mb-1">
