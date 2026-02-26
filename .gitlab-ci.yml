@@ -15,10 +15,11 @@ install:
   script:
     - cd tfw-seat-app
     - npm ci
-  artifacts:
+  cache:
+    key: "${CI_COMMIT_REF_SLUG}"
     paths:
-      - tfw-seat-app/node_modules
-    expire_in: 1h
+      - tfw-seat-app/node_modules/
+    policy: pull-push
 
 # Build the Next.js app and produce a static export
 build:
@@ -26,11 +27,17 @@ build:
   tags: [comsc-ci]
   script:
     - cd tfw-seat-app
+    - npm ci --prefer-offline --no-audit --progress=false
     - npm run build
     - npx next export -o out
     - cd ..
     - mkdir -p public
     - cp -r tfw-seat-app/out/* public/ || true
+  cache:
+    key: "${CI_COMMIT_REF_SLUG}"
+    paths:
+      - tfw-seat-app/node_modules/
+    policy: pull-push
   artifacts:
     paths:
       - public
