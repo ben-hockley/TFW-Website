@@ -11,8 +11,6 @@ void setup() {
     pinMode(seatPins[thisPin], INPUT_PULLUP);
   }
 
-  Serial.begin(9600);
-
   byte numDigits = 4;  
   byte digitPins[] = {2, 3, 4, 5};
   byte segmentPins[] = {6, 7, 8, 9, 10, 11, 12, 13};
