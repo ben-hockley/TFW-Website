@@ -11,6 +11,11 @@ import { PaymentSuccessAnimation } from "@/components/PaymentSuccessAnimation";
 import { PageHeader } from "@/components/PageHeader";
 import { Skeleton } from "@/components/ui/skeleton";
 
+// See comment in train/[serviceId]/page.tsx for explanation.
+export function generateStaticParams() {
+  return [{ serviceId: "loading" }];
+}
+
 type PaymentState = "idle" | "loading" | "success";
 
 interface TicketPageProps {

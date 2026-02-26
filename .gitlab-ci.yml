@@ -35,6 +35,8 @@ pages:
   script:
     - mkdir -p public
     - cp -r tfw-seat-app/out/* public/
+    # SPA fallback: unmatched URLs (e.g. /train/<serviceId>) get the Next.js shell
+    - cp public/index.html public/404.html
   artifacts:
     paths:
       - public

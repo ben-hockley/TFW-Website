@@ -8,6 +8,11 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { PageHeader } from "@/components/PageHeader";
 import { Departure } from "@/lib/types";
 
+// Required for `output: 'export'` — tells Next.js which station pages to pre-render
+export function generateStaticParams() {
+  return stations.map((s) => ({ stationCode: s.code }));
+}
+
 interface StationPageProps {
   params: Promise<{ stationCode: string }>;
 }

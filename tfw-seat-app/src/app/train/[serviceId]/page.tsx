@@ -2,7 +2,7 @@
 
 import { useEffect, useState, use } from "react";
 import Link from "next/link";
-import { getTrainLayout } from "@/lib/mockData";
+import { getTrainLayout, featureInfo } from "@/lib/mockData";
 import { TrainLayout, Seat as SeatType } from "@/lib/types";
 import { TrainHeader } from "@/components/TrainHeader";
 import { CoachSelector } from "@/components/CoachSelector";
@@ -11,7 +11,13 @@ import { SeatInfoModal } from "@/components/SeatInfoModal";
 import { SeatSummaryPanel } from "@/components/SeatSummaryPanel";
 import { PageHeader } from "@/components/PageHeader";
 import { Skeleton } from "@/components/ui/skeleton";
-import { featureInfo } from "@/lib/mockData";
+
+// ServiceIds are generated at runtime from mock data, so we can't enumerate them
+// at build time. Returning a placeholder satisfies Next.js static-export requirement;
+// actual navigation works via client-side routing (falling back to 404.html on GitLab Pages).
+export function generateStaticParams() {
+  return [{ serviceId: "loading" }];
+}
 
 interface TrainPageProps {
   params: Promise<{ serviceId: string }>;
