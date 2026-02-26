@@ -44,17 +44,24 @@ build:
       - public
     expire_in: 1 week
 
-# GitLab Pages job: uploads the prepared public/ directory
+# GitLab Pages job: build, export and upload the `public/` directory
 pages:
   stage: deploy
   tags: [comsc-ci]
-  dependencies:
-    - build
   script:
-    - echo "Deploying to GitLab Pages"
+    - cd tfw-seat-app
+    - npm ci --prefer-offline --no-audit --progress=false
+    - npm run build
+    - npx next export -o out
+    - cd ..
+    - mkdir -p public
+    - cp -r tfw-seat-app/out/* public/ || true
+    - echo "Built and copied to public/"
+    - ls -la public || true
   artifacts:
     paths:
       - public
+    expire_in: 1 week
   rules:
     - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
       when: always
